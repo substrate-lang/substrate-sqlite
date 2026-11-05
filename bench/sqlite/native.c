@@ -1,5 +1,5 @@
-/* native SCRIPT DATABASE: speedtest1's script on SQLite, as speed.sub runs it on packages/sqlite: from each "-- begin test"
-   line to the next in one sqlite3_exec, printed as its time in ms and the line's test. */
+/* native SCRIPT DATABASE: speedtest1's script on SQLite, as speed.sub runs it on the sqlite package: from each "-- begin
+   test" line to the next in one sqlite3_exec, printed as its time in ms and the line's test. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const [out, reps] = process.argv.slice(2);
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../..');
+const substrate = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../../substrate');
 const script = `${out}/script.sql`;
 const file = `${out}/test.db`;
 
@@ -19,7 +19,7 @@ const run = (command, args) => {
 };
 
 const programs = {
-  ours: (db) => run(process.execPath, [...process.execArgv, `${root}/substrate/host/subhost.mjs`,
+  ours: (db) => run(process.execPath, [...process.execArgv, `${substrate}/substrate/host/subhost.mjs`,
     '--grant', 'read', out, '--grant', 'write', out, `${out}/ours`, script, db]),
   native: (db) => run(`${out}/native`, [script, db]),
 };
