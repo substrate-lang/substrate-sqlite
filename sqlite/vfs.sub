@@ -55,9 +55,8 @@
     (cast string (slice p n))))
 
 (define (c-copy [s string]) -> (ptr u8)
-  (let ([p (cast (ptr u8) (malloc (+ (-> s length) 1)))])
+  (let ([p (-> (new 0 u8 (+ (-> s length) 1)) items)])
     (memcpy p (-> s bytes) (-> s length))
-    (set! (@ p (-> s length)) 0)
     p))
 
 (define (node-of [path string]) -> (ptr lock-node)
@@ -67,7 +66,7 @@
         (+= (-> n files) 1)
         (return n))
       (set! n (-> n next)))
-    (set! n (cast (ptr lock-node) (calloc 1 (sizeof lock-node))))
+    (set! n (new 0 lock-node))
     (set! (-> n path) (string-copy path))
     (set! (-> n files) 1)
     (set! (-> n next) nodes)
