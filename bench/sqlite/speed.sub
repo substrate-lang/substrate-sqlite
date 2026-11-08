@@ -17,9 +17,9 @@
     n))
 
 (define (main)
-  (let ([args (host-args)] [bytes (slice u8)] [why string] [db (ptr sqlite) 0] [failed #f])
-    (when (< (fs-read-file (@ args 0) (& bytes) (& why)) 0)
-      (printf "~a\n" why)
+  (let ([args (host-args)] [bytes (slice u8)] [why string] [unread error] [db (ptr sqlite) 0] [failed #f])
+    (unless (fs-read-file (@ args 0) (& bytes) (& unread))
+      (printf "~a\n" (error-text (& unread)))
       (host-exit 1 ""))
     (set! db (sqlite-open (@ args 1) (& why)))
     (when (== db 0)

@@ -20,7 +20,7 @@
     (sqlite-finalize st)
     n))
 
-(define (exists? [path string]) -> bool (let ([info fs-info]) (== (fs-stat path (& info) 0) 0)))
+(define (exists? [path string]) -> bool (let ([info fs-info]) (fs-stat path (& info) 0)))
 
 (define (main [dir string])
   (set! root dir)
