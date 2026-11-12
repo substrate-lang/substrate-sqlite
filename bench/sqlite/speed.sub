@@ -12,7 +12,7 @@
 (define (next-test [text string] [i u32]) -> u32
   (let ([n (-> text length)])
     (while (< (+ i 1) n)
-      (when (and (== (@ text i) 10) (marked? text (+ i 1))) (return (+ i 1)))
+      (when (and (== (@ text i) #\newline) (marked? text (+ i 1))) (return (+ i 1)))
       (+= i 1))
     n))
 
@@ -32,7 +32,7 @@
         (when (< (sqlite-exec db (slice text at next) (& why)) 0)
           (set! failed #t)
           (set! line at)
-          (while (and (< line next) (!= (@ text line) 10)) (+= line 1))
+          (while (and (< line next) (!= (@ text line) #\newline)) (+= line 1))
           (host-write 2 (cast (slice u8) (slice text at line)))
           (host-write 2 (cast (slice u8) ": "))
           (host-write 2 (cast (slice u8) why))
@@ -40,7 +40,7 @@
         (set! t (- (clock-monotonic) t))
         (when (marked? text at)
           (set! line (+ at (-> mark length)))
-          (while (and (< line next) (!= (@ text line) 10)) (+= line 1))
+          (while (and (< line next) (!= (@ text line) #\newline)) (+= line 1))
           (printf "~a ~a\n" t (slice text (+ at (-> mark length)) line)))
         (set! at next)))
     (sqlite-close db)
