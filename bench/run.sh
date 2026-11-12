@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 # The sqlite package against SQLite built natively, on the SQL of speedtest1's tests but rtree and app, with the
-# database in a file and in memory. In the dev shell: nix develop -c bench/sqlite/run.sh [SIZE [REPS]]
+# database in a file and in memory. In the dev shell: nix develop -c bench/run.sh [SIZE [REPS]]
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-root="$(cd "$here/../.." && pwd)"
+root="$(cd "$here/.." && pwd)"
 substrate="$(cd "$root/../substrate" && pwd)"
-out="$root/build/bench/sqlite"
+out="$root/build/bench"
 size="${1:-100}"
 reps="${2:-1}"
 mkdir -p "$out"
 
-# sqlite/build.sh's options, but with SQLite's own files
+# build.sh's options, but with SQLite's own files
 flags=(-O2 -DSQLITE_THREADSAFE=0 -DSQLITE_TEMP_STORE=2 -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_OMIT_LOCALTIME
        -DSQLITE_OMIT_SHARED_CACHE -DSQLITE_OMIT_DEPRECATED -DSQLITE_DEFAULT_MEMSTATUS=0 -DSQLITE_DQS=0
        -DSQLITE_LIKE_DOESNT_MATCH_BLOBS -I"$SQLITE_AMALGAMATION")
