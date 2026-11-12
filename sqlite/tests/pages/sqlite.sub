@@ -14,7 +14,7 @@
     (when (== st 0) (set! error why))
     (when (== (sqlite-step st 0) sqlite-row)
       (write-digits (& b) (cast u64 (sqlite-column-i64 st 0)) 10)
-      (buffer-add-byte! (& b) 32)
+      (buffer-add-byte! (& b) #\space)
       (buffer-add-string! (& b) (sqlite-column-text st 1)))
     (sqlite-finalize st)
     (sqlite-close db)
