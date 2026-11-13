@@ -1,4 +1,5 @@
 (package sqlite
   (version "0.11.0")
   (substrate "0.11.1")
-  (tests (browser)))
+  (tests "tests/*.sub")
+  (dev-dependencies (chromium)))
