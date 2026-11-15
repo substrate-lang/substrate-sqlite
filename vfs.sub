@@ -193,7 +193,7 @@
 (define (vfs-access [v i32] [name (ptr u8)] [flags i32] [out (ptr i32)]) -> i32
   (let ([info fs-info])
     (set! (@ out 0) (if (and (fs-stat (c-string name) (& info) 0)
-                             (or (!= flags 0) (!= (-> info kind) fs-file) (> (-> info size) 0)))
+                             (or (!= flags 0) (!= (-> info kind) .fs-file) (> (-> info size) 0)))
                         1
                         0))
     ok))
