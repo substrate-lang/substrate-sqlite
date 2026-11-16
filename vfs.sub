@@ -1,5 +1,5 @@
-;; SQLite's files, on the host's (host/fs.sub): the VFS sqlite3_os_init registers as SQLite starts, with locks between the
-;; connections of one instance of the program.
+;; SQLite's files, on the host's files (host/fs.sub). This is the VFS that sqlite3_os_init registers as SQLite starts,
+;; with locks between the connections of one instance of the program.
 (require-unqualified host/fs)
 (require-unqualified host/modules/clock)
 (require-unqualified host/modules/random)
