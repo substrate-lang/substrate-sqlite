@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The sqlite package against SQLite built natively, on the SQL of speedtest1's tests but rtree and app, with the
+# The sqlite package against SQLite built natively, on the SQL of speedtest1's tests except rtree and app, with the
 # database in a file and in memory. In the dev shell: nix develop -c bench/run.sh [SIZE [REPS]]
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

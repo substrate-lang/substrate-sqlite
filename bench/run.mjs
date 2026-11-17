@@ -1,5 +1,5 @@
-// run.mjs OUT REPS: ours (OUT/ours) and native (OUT/native) on OUT/script.sql, with the database in a file and in
-// memory: each test's best time of REPS runs in ms, and ours over native.
+// run.mjs OUT REPS runs ours (OUT/ours) and native (OUT/native) on OUT/script.sql, with the database in a file and in
+// memory. It prints each test's best time of REPS runs in ms, and ours over native.
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
